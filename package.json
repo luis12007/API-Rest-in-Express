@@ -1,0 +1,14 @@
+{
+  "name": "belgiesv",
+  "version": "1.0.0",
+  "description": "Api for the admin page for BelgieSV",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luis Hernandez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
