@@ -14,7 +14,7 @@ module.exports = function (app, databaseService) {
             Pass: "Churros2023"
         }
         
-        if(credentials[0] == user[0] && credentials[1] == user[1]){
+        if(credentials.nombre == user.nombre && credentials.Pass == user.Pass){
             jwt.sign({ user: user }, 'secretkey',{expiresIn: '60m'}, (err, token) => {
                 response.json({
                     token
@@ -68,6 +68,17 @@ module.exports = function (app, databaseService) {
                 response.status(500).json({ "mensaje": "peto unu" });
             });
     });
+
+    app.get('/ProductsById/:idinventario', (request, response) => {
+        const idinventario = request.params.idinventario;
+        databaseService.FindProductsById(idinventario)
+            .then(products => {
+                response.json(products);
+            }).catch(e => {
+                response.status(500).json({ "mensaje": "peto unu" });
+            });
+    });
+
 
     app.post('/Products', (request, response) => {
         const NewObject = request.body;

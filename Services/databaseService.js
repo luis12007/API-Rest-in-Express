@@ -21,6 +21,10 @@ const databaseService = () => {
         return knex(table).select().where({Nombre: Params});
     };  
 
+    const FindProductsById = (Params) => {
+        return knex(table).select().where({idinventario: Params});
+    };  
+
     const CreateProduct = ({Nombre, Cantidad, PrecioIndividual, PrecioCaja, DiaCompra, Caducidad}) => {
         return knex(table).insert({
             Nombre: Nombre,
@@ -44,11 +48,11 @@ const databaseService = () => {
     };
 
     const DeleteProduct = (params) => {
-        return knex(table).where({idinventario: params}).delete();
+        return knex(table).where({}).delete();
     };
 
 
-    return {GetProducts, CreateProduct, FindProducts, UpdateProduct , DeleteProduct};
+    return {GetProducts, CreateProduct, FindProducts, UpdateProduct , DeleteProduct, FindProductsById};
 };
 
 module.exports = {
