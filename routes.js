@@ -15,7 +15,7 @@ module.exports = function (app, databaseService) {
         }
         
         if(credentials.nombre == user.nombre && credentials.Pass == user.Pass){
-            jwt.sign({ user: user }, 'secretkey',{expiresIn: '60m'}, (err, token) => {
+            jwt.sign({ user: user }, 'secretkey'/* ,{expiresIn: '60m'} */, (err, token) => {
                 response.json({
                     token
                 })
@@ -65,6 +65,17 @@ module.exports = function (app, databaseService) {
             .then(products => {
                 response.json(products);
             }).catch(e => {
+                response.status(500).json({ "mensaje": "peto unu" }).sum('piña');
+            });
+    });
+
+    app.get('/ProductsSum/', (request, response) => {
+        databaseService.FindProductsSum()
+            .then(products => {
+                console.log(products)
+                response.json(products);
+            }).catch(e => {
+                console.log(e)
                 response.status(500).json({ "mensaje": "peto unu" });
             });
     });

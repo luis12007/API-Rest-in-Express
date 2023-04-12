@@ -21,6 +21,10 @@ const databaseService = () => {
         return knex(table).select().where({Nombre: Params});
     };  
 
+    const FindProductsSum = () => {
+        return knex(table).select('Nombre').groupBy('Nombre').sum('Cantidad as Cantidad');
+    };  
+
     const FindProductsById = (Params) => {
         return knex(table).select().where({idinventario: Params});
     };  
@@ -52,7 +56,7 @@ const databaseService = () => {
     };
 
 
-    return {GetProducts, CreateProduct, FindProducts, UpdateProduct , DeleteProduct, FindProductsById};
+    return {GetProducts, CreateProduct, FindProducts, UpdateProduct , DeleteProduct, FindProductsById, FindProductsSum};
 };
 
 module.exports = {
