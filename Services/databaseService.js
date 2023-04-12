@@ -48,7 +48,7 @@ const databaseService = () => {
     };
 
     const DeleteProduct = (params) => {
-        return knex(table).where({}).delete();
+        return knex(table).where({idinventario: params}).delete();
     };
 
 
